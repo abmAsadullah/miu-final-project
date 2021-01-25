@@ -4,7 +4,7 @@
     <ul>
     <% @questions.each do |question| %>
       <li>
-        <%= link_to question.title, question%><small> question by @</small><%= question.user.username %>
+        <%= link_to question.title, question%><small> question by </small>@<%= question.user.username %>
       </li>
     <% end %>
     </ul>
