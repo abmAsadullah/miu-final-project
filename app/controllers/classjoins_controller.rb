@@ -13,18 +13,18 @@ class ClassjoinsController < ApplicationController
     end
     
     def create
-        @classjoin = current_user.classjoins.build(classjoin_params)
-        @classjoin.creator = current_user
+        @classjoin = Classjoin.new(classjoin_params)
+        @classjoin.user = current_user
         if @classjoin.save
-        redirect_to @classjoin
+            redirect_to @classjoin
         else
-        render :new
+            render :new
         end
     end
     
     private
     
     def classjoin_params
-        params.require(:event).permit(:topic, :details, :time)
+        params.require(:classjoin).permit(:topic, :details, :time)
     end
 end
