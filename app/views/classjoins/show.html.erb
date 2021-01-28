@@ -1,0 +1,22 @@
+<h1>Title: <%= @classjoin.topic %></h1>
+
+<p>Description: <%= @classjoin.details %></p>
+<p><small>Time: </small><%= @classjoin.time %></p>
+<p><small>Arranged by: </small><%= @classjoin.user.username %></p>
+
+<br><br>
+<% if current_user && current_user != @classjoin.user && !current_user.attended_classjoins.where(id: @classjoin.id).any? %>
+	<%= form_for(current_user.classjoin_attendees.build(attended_classjoin_id: @classjoin.id)) do |f| %>
+	<%= f.hidden_field :attended_classjoin_id %>
+    <p>Lets join this classjoin</p>
+		<%= f.submit "Attend" %>
+	<% end %>
+<% else %>
+    <p>You are attendee of this classjoin or you created this classjoin or currently loged out!</p>
+<% end %>
+
+  <br><br>
+
+
+
+<%= link_to "See all classjoins", classjoins_path %>

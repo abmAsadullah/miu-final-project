@@ -1,0 +1,11 @@
+<h1>Events page</h1>
+
+<ul>
+  <% @classjoins.each do |classjoin| %>
+    <li>
+      <%= link_to classjoin.topic, classjoin %> <small>Time: </small>
+      <%= classjoin.time%>
+    </li>
+  <% end %>
+</ul>
+
