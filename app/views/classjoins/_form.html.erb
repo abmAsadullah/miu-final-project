@@ -1,0 +1,30 @@
+<%= form_with(model: classjoin, local: true) do |form| %>
+  <% if classjoin.errors.any? %>
+    <div>
+      <h2><%= pluralize(classjoin.errors.count, "error") %> prohibited this classjoin from being saved:</h2>
+
+      <ul>
+        <% classjoin.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :topic %>
+    <%= form.text_field :topic %>
+  </div>
+
+  <div>
+    <%= form.label :details %>
+    <%= form.text_area :details %>
+  </div>
+<div>
+  <%= form.label :time %>
+  <%= form.datetime_select :date, ampm: true, order: %i[day month year], default: 0.days.from_now.localtime %>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
