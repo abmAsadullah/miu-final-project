@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_06_180020) do
+ActiveRecord::Schema.define(version: 2021_02_06_230545) do
 
   create_table "answers", force: :cascade do |t|
     t.text "body"
@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 2021_02_06_180020) do
     t.index ["user_id"], name: "index_assignments_on_user_id"
   end
 
+  create_table "attaches", force: :cascade do |t|
+    t.string "title"
+    t.integer "user_id", null: false
+    t.integer "assignment_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["assignment_id"], name: "index_attaches_on_assignment_id"
+    t.index ["user_id"], name: "index_attaches_on_user_id"
+  end
+
   create_table "classjoins", force: :cascade do |t|
     t.string "topic"
     t.text "details"
@@ -39,6 +49,16 @@ ActiveRecord::Schema.define(version: 2021_02_06_180020) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_classjoins_on_user_id"
+  end
+
+  create_table "discussions", force: :cascade do |t|
+    t.text "body"
+    t.integer "user_id", null: false
+    t.integer "assignment_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["assignment_id"], name: "index_discussions_on_assignment_id"
+    t.index ["user_id"], name: "index_discussions_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -75,7 +95,11 @@ ActiveRecord::Schema.define(version: 2021_02_06_180020) do
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
   add_foreign_key "assignments", "users"
+  add_foreign_key "attaches", "assignments"
+  add_foreign_key "attaches", "users"
   add_foreign_key "classjoins", "users"
+  add_foreign_key "discussions", "assignments"
+  add_foreign_key "discussions", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "questions", "users"
 end

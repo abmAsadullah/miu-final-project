@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   get '/about', to: 'pages#about'
 
   resources :classjoins
-  resources :assignments
+  resources :assignments do
+    resources :discussions
+  end
   resources :questions do
     resources :answers
   end
