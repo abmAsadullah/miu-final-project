@@ -1,0 +1,15 @@
+
+<h1>Assignments</h1>
+
+    <ul>
+    <% @assignments.each do |assignment| %>
+      <li>
+        <%= link_to assignment.title, assignment%><small> assignment by </small>@<%= assignment.user.username %>
+      </li>
+    <% end %>
+    </ul>
+
+<br>
+
+
+<%= link_to 'New Assignment', new_assignment_path %>

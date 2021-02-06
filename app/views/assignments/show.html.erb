@@ -1,0 +1,20 @@
+<p>
+  <strong>Title:</strong>
+  <%= @assignment.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @assignment.body %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @assignment.user.username %>
+</p>
+<% if current_user == @assignment.user %>
+<%= link_to 'Edit', edit_assignment_path(@assignment) %> |
+<%= link_to 'Delete', assignment_path(@assignment), method: :delete, data: { confirm: 'Are you sure?' } %> |
+<% elsif current_user && current_user.admin %>
+<%= link_to 'Delete', assignment_path(@assignment), method: :delete, data: { confirm: 'Are you sure?' } %> |
+<% end %>
