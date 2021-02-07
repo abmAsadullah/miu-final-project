@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :classjoins
   resources :assignments do
+    resources :attachfiles
     resources :discussions
   end
   resources :questions do

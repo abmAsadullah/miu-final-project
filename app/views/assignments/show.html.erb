@@ -19,6 +19,27 @@
 <%= link_to 'Delete', assignment_path(@assignment), method: :delete, data: { confirm: 'Are you sure?' } %> |
 <% end %>
 
+<h2>Attachment about this Assignment</h2>
+<% @assignment.attachfiles.each do |attachfile| %>
+  <p><%= attachfile.user.username %> <small>said in attachment</small> "<%= attachfile.title %>"</p>
+  <%= link_to "See file", attachfile.file %>
+<% end %>
+
+
+<h3>Say something about this assignment</h3>
+<%= form_with model: [ @assignment, @assignment.attachfiles.build ] do |form| %>
+  
+  <p>
+    <%= form.text_field :title %>
+  </p>
+  <p>
+    <%= form.file_field :file %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
 <h2>Discussions about this Assignment</h2>
 <% @assignment.discussions.each do |discussion| %>
   <p><%= discussion.user.username %> <small>said</small> "<%= discussion.body %>"</p>
