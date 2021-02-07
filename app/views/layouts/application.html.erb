@@ -4,20 +4,17 @@
     <title>UniversityProject</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <script src="https://kit.fontawesome.com/e252d07dd4.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    
     <%= render 'layouts/navbar' %>
     <%= render 'layouts/alerts' %>
+    <div class="container">
     <%= yield %>
-    <% if current_user %>
-    <%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
-<% else %>
-    <%= link_to 'Sign Up', new_user_registration_path %>
-    <%= link_to 'Sign In', new_user_session_path %>
-<% end %>
+    </div>
   </body>
 </html>
