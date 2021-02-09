@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: 'pages#home'
   get '/about', to: 'pages#about'
+  get '/faqs', to: 'pages#faqs'
 
   resources :classjoins
   resources :assignments do

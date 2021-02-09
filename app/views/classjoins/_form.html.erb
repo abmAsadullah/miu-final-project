@@ -22,9 +22,10 @@
   </div>
 <div>
   <%= form.label :time %>
-  <%= form.datetime_select :date, ampm: true, order: %i[day month year], default: 0.days.from_now.localtime %>
+  <%= form.datetime_select :time, ampm: true, order: %i[day month year], default: 0.days.from_now.localtime %>
   </div>
   <div>
     <%= form.submit %>
   </div>
 <% end %>
+
