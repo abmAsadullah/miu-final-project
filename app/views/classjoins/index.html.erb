@@ -1,11 +1,24 @@
 <h1>Events page</h1>
 
-<ul>
+<div>
   <% @classjoins.each do |classjoin| %>
-    <li>
-      <%= link_to classjoin.topic, classjoin %> <small>Time: </small>
-      <%= classjoin.time%>
-    </li>
+    <div class="card">
+      <div class="box">
+          <div class="img">
+              <img src="https://www.planwallpaper.com/static/images/cool-wallpaper-5_G6Qe1wU.jpg">
+          </div>
+          <h2><%= classjoin.user.username %><br><span class="bg-primary"><%= classjoin.topic %></span></h2>
+          <p><%= classjoin.details%></p>
+                  <small><%= classjoin.time %></small>
+          <h2> <a href="<%= classjoin_path(classjoin) %>">
+          <span>
+              Go to the Class
+          </span></a>
+          </h2>
+      </div>
+    </div>
   <% end %>
-</ul>
+</div>
+
 <%= link_to 'New class', new_classjoin_path %>
+
