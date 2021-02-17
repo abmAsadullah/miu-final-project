@@ -13,11 +13,13 @@
           </div>
 				</div>
 				<div class="card text-dark bg-info mb-3 assignment-card" style="max-width: 100%;">
-				  <div class="card-header display-6">() student/s submitted assignment.</div>
+				  <h3 class="card-header">Who submitted assignment.</h3>
 				  <div class="card-body">
 				    <ol>
-				    	<li>Saad</li>
-				    	<li>Nirob</li>
+            <% @assignment.attachfiles.each do |attachfile| %>
+                <li><%= attachfile.user.username %> <%= attachfile.title %>
+                <%= link_to "See file", attachfile.file %></li>
+              <% end %>
 				    </ol>
 				  </div>
 				</div>
