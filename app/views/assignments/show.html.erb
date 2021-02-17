@@ -1,3 +1,53 @@
+	<section class="container bg-info">
+
+  		<div class="row">
+			<div class="assignment-body col-8 p-3">
+				<div class="card text-dark bg-info mb-3 assignment-card" style="max-width: 100%;">
+				  <h1 class="card-header"><%= @assignment.title %> --by <%= @assignment.user.username %></h1>
+				  <div class="card-body">
+				    <p class="card-text"><%= @assignment.body %></p>
+				  </div>
+          <div class="card-footer">
+          <span>Say Something</span> <span>Attach</span>
+					  <button>Submit</button>
+          </div>
+				</div>
+				<div class="card text-dark bg-info mb-3 assignment-card" style="max-width: 100%;">
+				  <div class="card-header display-6">() student/s submitted assignment.</div>
+				  <div class="card-body">
+				    <ol>
+				    	<li>Saad</li>
+				    	<li>Nirob</li>
+				    </ol>
+				  </div>
+				</div>
+			</div>
+			<div class="discussion col-4 p-3 bg-info">
+				<div class="card text-dark bg-info mb-1 assignment-card-discussion" style="max-width: 100%;">
+				  <h4 class="card-header">Discussions</h4>
+          <% @assignment.discussions.each do |discussion| %>
+            <div class="card-body">
+              <small class="card-text m-0 p-0">"<%= discussion.body %>"</small>
+              <p class="d-flex justify-content-end m-0 p-0">---<%= discussion.user.username %></p>
+              <hr>
+            </div>
+          <% end %>
+          
+          <%= form_with model: [ @assignment, @assignment.discussions.build ] do |form| %>
+            <p>
+              <%= form.text_area :body %>
+            </p>
+            <p>
+              <%= form.submit %>
+            </p>
+          <% end %>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
 <p>
   <strong>Title:</strong>
   <%= @assignment.title %>
@@ -40,21 +90,6 @@
   </p>
 <% end %>
 
-<h2>Discussions about this Assignment</h2>
-<% @assignment.discussions.each do |discussion| %>
-  <p><%= discussion.user.username %> <small>said</small> "<%= discussion.body %>"</p>
-<% end %>
 
-
-<h3>Say something about this assignment</h3>
-<%= form_with model: [ @assignment, @assignment.discussions.build ] do |form| %>
-  
-  <p>
-    <%= form.text_area :body %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
 
 <%= link_to 'Back', assignments_path %>
